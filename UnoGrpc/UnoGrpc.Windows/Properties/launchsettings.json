@@ -1,0 +1,10 @@
+{
+  "profiles": {
+	"UnoGrpc.Windows (Package)": {
+	  "commandName": "MsixPackage"
+	},
+	"UnoGrpc.Windows (Unpackaged)": {
+	  "commandName": "Project"
+	}
+  }
+}

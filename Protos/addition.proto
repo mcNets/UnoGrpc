@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package unoproto;
+
+service Operations {
+    rpc Add (AdditionRequest) returns (AdditionResponse);
+}
+
+message AdditionRequest {
+    int64 Op1 = 1;
+    int64 Op2 = 2;
+}
+
+message AdditionResponse {
+    string Message = 2;
+    int64 Result = 3;
+}
