@@ -11,11 +11,10 @@ builder.Services.AddGrpc();
 const string CorsPolicyName = "_CorsPolicy";
 builder.Services.AddCors(options => {
     options.AddPolicy(CorsPolicyName, builder => {
-        builder
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowAnyOrigin()
-            .WithExposedHeaders("Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding");
+        builder.AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowAnyOrigin()
+               .WithExposedHeaders("Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding");
     });
 });
 

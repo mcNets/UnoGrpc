@@ -48,14 +48,14 @@ public class UnoGrpcClient
 
         var reply = new AdditionResponse() { Result = 0, Message = string.Empty };
 
-        var headers = new Metadata {
-            { "Access-Control-Allow-Origin", "*" },
-            { "Access-Control-Allow-Methods", "GET, POST, OPTIONS" },
-            { "Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With" }
-        };
+        //var headers = new Metadata {
+        //    { "Access-Control-Allow-Origin", "*" },
+        //    { "Access-Control-Allow-Methods", "GET, POST, OPTIONS" },
+        //    { "Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With" }
+        //};
 
         try {
-            reply = await client.AddAsync(new AdditionRequest { Op1 = op1, Op2 = op2 }, headers);
+            reply = await client.AddAsync(new AdditionRequest { Op1 = op1, Op2 = op2 });
             reply.Message = "OK";
         }
         catch (System.Exception ex) {
