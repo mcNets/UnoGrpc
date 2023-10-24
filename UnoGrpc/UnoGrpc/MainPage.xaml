@@ -9,33 +9,28 @@
 
     <StackPanel HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Orientation="Horizontal">
+                Orientation="Vertical">
 
         <TextBox x:Name="Op1"
                  Width="100"
-                 Margin="10,0,0,0" />
+                 Margin="0,0,0,5" />
 
         <TextBlock Text="+"
-                   VerticalAlignment="Center"
-                   Margin="10,0,0,0" />
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,5" />
 
         <TextBox x:Name="Op2"
                  Width="100"
-                 Margin="10,0,0,0" />
+                 Margin="0,0,0,30" />
 
         <Button Content="Compute"
                 Width="100"
                 Click="Compute_Click"
-                Margin="10,0,0,0" />
-
-        <TextBlock Text="="
-                   VerticalAlignment="Center"
-                   Margin="10,0,0,0" />
+                Margin="0,0,0,30" />
 
         <TextBlock x:Name="Result"
-                   VerticalAlignment="Center"
-                   Text=""
-                   Margin="10,0,0,0" />
+                   HorizontalAlignment="Center"
+                   Text="" />
 
     </StackPanel>
 </Page>

@@ -18,7 +18,7 @@ public sealed partial class MainPage : Page {
 		try {
             UnoGrpcClient.AddAsync(op1, op2).ContinueWith((task) => {
                 var result = task.Result;
-                this.Result.Text = result.Message == "OK" ? result.Result.ToString() : result.Message;
+                this.Result.Text = result.Message == "OK" ? $"{op1} + {op2} = {result.Result.ToString()}" : result.Message;
             });
 		}
 		catch (Exception ex ) {

@@ -21,12 +21,12 @@ builder.Services.AddCors(options => {
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 app.UseGrpcWeb();
 app.UseCors(CorsPolicyName);
 
 app.MapGrpcService<GreeterService>().RequireCors(CorsPolicyName).EnableGrpcWeb();
 app.MapGrpcService<OperationsService>().RequireCors(CorsPolicyName).EnableGrpcWeb();
+
 app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 
 app.Run();

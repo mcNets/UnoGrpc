@@ -8,7 +8,9 @@ using Unoproto;
 
 namespace UnoGrpcCommon;
 
-public class UnoGrpcClient {
+
+public class UnoGrpcClient
+{
 
     public UnoGrpcClient() {
     }
@@ -17,13 +19,30 @@ public class UnoGrpcClient {
 
         GrpcChannel channel;
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Create("BROWSER"))) {
-            var httpHandler = new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler());
-            channel = GrpcChannel.ForAddress("http://localhost:5018", new GrpcChannelOptions { HttpHandler = httpHandler });
-        }
-        else {
-            channel = GrpcChannel.ForAddress("http://localhost:5018");
-        }
+        var httpHandler = new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler());
+        channel = GrpcChannel.ForAddress("https://localhost:5018",
+            new GrpcChannelOptions {
+
+                HttpHandler = httpHandler
+            });
+
+        //if (RuntimeInformation.IsOSPlatform(OSPlatform.Create("BROWSER"))) {
+        //    var httpHandler = new GrpcWebHandler(GrpcWebMode.GrpcWebText, new HttpClientHandler());
+        //    channel = GrpcChannel.ForAddress("http://localhost:5018",
+        //        new GrpcChannelOptions {
+        //            HttpHandler = httpHandler
+        //        });
+        //}
+        //else if (RuntimeInformation.IsOSPlatform(OSPlatform.Create("ANDROID"))) {
+        //    var httpHandler = new GrpcWebHandler(GrpcWebMode.GrpcWebText, new HttpClientHandler());
+        //    channel = GrpcChannel.ForAddress("http://10.0.2.2:5018",
+        //        new GrpcChannelOptions {
+        //            HttpHandler = httpHandler
+        //        });
+        //}
+        //else {
+        //    channel = GrpcChannel.ForAddress("http://localhost:5018");
+        //}
 
         var client = new Operations.OperationsClient(channel);
 
@@ -36,7 +55,7 @@ public class UnoGrpcClient {
         };
 
         try {
-            reply = await client.AddAsync(new AdditionRequest { Op1 = op1, Op2 = op2 }, headers: headers);
+            reply = await client.AddAsync(new AdditionRequest { Op1 = op1, Op2 = op2 }, headers);
             reply.Message = "OK";
         }
         catch (System.Exception ex) {
