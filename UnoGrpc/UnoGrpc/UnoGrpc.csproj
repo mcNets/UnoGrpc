@@ -1,60 +1,54 @@
-<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) or '$(EnableWindowsTargeting)' == 'true'">$(TargetFrameworks);net7.0-windows10.0.19041</TargetFrameworks>
-		<TargetFrameworks>$(TargetFrameworks);net7.0;net7.0-ios;net7.0-android;net7.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="'$(OverrideTargetFrameworks)'!=''">$(OverrideTargetFrameworks)</TargetFrameworks>
+﻿<Project Sdk="Uno.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>net10.0-android;net10.0-ios;net10.0-browserwasm;net10.0-desktop</TargetFrameworks>
 
-		<!-- Ensures the .xr.xml files are generated in a proper layout folder -->
-		<GenerateLibraryLayout>true</GenerateLibraryLayout>
-	</PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <UnoSingleProject>true</UnoSingleProject>
 
-	<ItemGroup>
-		<PackageReference Include="Uno.WinUI" />
-		<PackageReference Include="Uno.Resizetizer" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Console" />
-	</ItemGroup>
+        <!-- Display name -->
+        <ApplicationTitle>UnoGrpc</ApplicationTitle>
+        <!-- App Identifier -->
+        <ApplicationId>com.companyname.UnoGrpc</ApplicationId>
+        <!-- Versions -->
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ApplicationVersion>1</ApplicationVersion>
+        <!-- Package Publisher -->
+        <ApplicationPublisher>mcnets</ApplicationPublisher>
+        <!-- Package Description -->
+        <Description>UnoGrpc powered by Uno Platform.</Description>
+        <LangVersion>preview</LangVersion>
 
-	<Choose>
-		<When Condition="$(IsWinAppSdk)">
-			<PropertyGroup>
-				<!--
-				If you encounter this error message:
+        <!--
+      UnoFeatures are used to quickly add and manage features enabled for your app.
+      https://aka.platform.uno/singleproject-features
+    -->
+        <UnoFeatures>
+            Lottie;
+            Hosting;
+            Toolkit;
+            Mvvm;
+            Configuration;
+            ThemeService;
+            SkiaRenderer;
+        </UnoFeatures>
+    </PropertyGroup>
 
-					error NETSDK1148: A referenced assembly was compiled using a newer version of Microsoft.Windows.SDK.NET.dll.
-					Please update to a newer .NET SDK in order to reference this assembly.
+    <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+        <UseNativeHttpHandler>false</UseNativeHttpHandler>
+    </PropertyGroup>
 
-				This means that the two packages below must be aligned with the "build" version number of
-				the "Microsoft.Windows.SDK.BuildTools" package above, and the "revision" version number
-				must be the highest found in https://www.nuget.org/packages/Microsoft.Windows.SDK.NET.Ref.
-				-->
-				<!-- <WindowsSdkPackageVersion>10.0.22621.28</WindowsSdkPackageVersion> -->
-			</PropertyGroup>
-			<ItemGroup>
-				<PackageReference Include="Microsoft.WindowsAppSDK" />
-				<PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
-			</ItemGroup>
-		</When>
-		<Otherwise>
-			<ItemGroup>
-				<PackageReference Include="Uno.WinUI.Lottie" />
+    <ItemGroup>
+        <PackageReference Include="Google.Protobuf" />
+        <PackageReference Include="Grpc.Net.Client" />
+        <PackageReference Include="Grpc.Net.Client.Web" />
+        <PackageReference Include="Grpc.Tools">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 
-				<!-- Include all images by default - matches the __WindowsAppSdkDefaultImageIncludes property in the WindowsAppSDK -->
-				<Content Include="Assets\**;**/*.png;**/*.bmp;**/*.jpg;**/*.dds;**/*.tif;**/*.tga;**/*.gif" Exclude="bin\**;obj\**;**\*.svg" />
-				<Page Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
-				<Compile Update="**\*.xaml.cs">
-					<DependentUpon>%(Filename)</DependentUpon>
-				</Compile>
-				<PRIResource Include="**\*.resw" />
-			</ItemGroup>
-		</Otherwise>
-	</Choose>
+    <ItemGroup>
+        <Protobuf Include="Protos\weather.proto" GrpcServices="Client" />
+    </ItemGroup>
 
-	<ItemGroup>
-		<UnoImage Include="Assets\**\*.svg" />
-		<UpToDateCheckInput Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\..\UnoGrpcClient\UnoGrpcCommon.csproj" />
-	</ItemGroup>
 </Project>
