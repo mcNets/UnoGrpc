@@ -42,7 +42,7 @@ TemporaryDependencyNodeTargetIdentifier=net10.0-android
 /errorreport:prompt
 /warn:10
 /doc:bin\Debug\net10.0-android\UnoGrpc.xml
-/define:UNO_REFERENCE_API;HAS_UNO_SKIA;HAS_UNO_SKIA_ANDROID;__UNO_SKIA__;__UNO_SKIA_ANDROID__;TRACE;DISABLE_XAML_GENERATED_BREAK_ON_UNHANDLED_EXCEPTION;DEBUG;__XAMARIN_ANDROID_v1_0__;__MOBILE__;__ANDROID__;__ANDROID_1__;__ANDROID_2__;__ANDROID_3__;__ANDROID_4__;__ANDROID_5__;__ANDROID_6__;__ANDROID_7__;__ANDROID_8__;__ANDROID_9__;__ANDROID_10__;__ANDROID_11__;__ANDROID_12__;__ANDROID_13__;__ANDROID_14__;__ANDROID_15__;__ANDROID_16__;__ANDROID_17__;__ANDROID_18__;__ANDROID_19__;__ANDROID_20__;__ANDROID_21__;__ANDROID_22__;__ANDROID_23__;__ANDROID_24__;__ANDROID_25__;__ANDROID_26__;__ANDROID_27__;__ANDROID_28__;__ANDROID_29__;__ANDROID_30__;__ANDROID_31__;__ANDROID_32__;__ANDROID_33__;__ANDROID_34__;__ANDROID_35__;__ANDROID_36__;NET;NET10_0;NETCOREAPP;ANDROID;ANDROID36_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;ANDROID21_0_OR_GREATER;ANDROID22_0_OR_GREATER;ANDROID23_0_OR_GREATER;ANDROID24_0_OR_GREATER;ANDROID25_0_OR_GREATER;ANDROID26_0_OR_GREATER;ANDROID27_0_OR_GREATER;ANDROID28_0_OR_GREATER;ANDROID29_0_OR_GREATER;ANDROID30_0_OR_GREATER;ANDROID31_0_OR_GREATER;ANDROID32_0_OR_GREATER;ANDROID33_0_OR_GREATER;ANDROID34_0_OR_GREATER;ANDROID35_0_OR_GREATER;ANDROID36_0_OR_GREATER;HAS_UNO;__UNO__;HAS_UNO_WINUI;__UNO_WINUI__;WINUI_WINDOWING;UNO_HAS_FRAMEWORKELEMENT_MEASUREOVERRIDE;UNO_HAS_NO_IDEPENDENCYOBJECT
+/define:UNO_REFERENCE_API;HAS_UNO_SKIA;HAS_UNO_SKIA_ANDROID;__UNO_SKIA__;__UNO_SKIA_ANDROID__;TRACE;DISABLE_XAML_GENERATED_BREAK_ON_UNHANDLED_EXCEPTION;DEBUG;NET;NET10_0;NETCOREAPP;ANDROID;ANDROID36_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;ANDROID21_0_OR_GREATER;ANDROID22_0_OR_GREATER;ANDROID23_0_OR_GREATER;ANDROID24_0_OR_GREATER;ANDROID25_0_OR_GREATER;ANDROID26_0_OR_GREATER;ANDROID27_0_OR_GREATER;ANDROID28_0_OR_GREATER;ANDROID29_0_OR_GREATER;ANDROID30_0_OR_GREATER;ANDROID31_0_OR_GREATER;ANDROID32_0_OR_GREATER;ANDROID33_0_OR_GREATER;ANDROID34_0_OR_GREATER;ANDROID35_0_OR_GREATER;ANDROID36_0_OR_GREATER;HAS_UNO;__UNO__;HAS_UNO_WINUI;__UNO_WINUI__;WINUI_WINDOWING;UNO_HAS_FRAMEWORKELEMENT_MEASUREOVERRIDE;UNO_HAS_NO_IDEPENDENCYOBJECT;__XAMARIN_ANDROID_v1_0__;__MOBILE__;__ANDROID__;__ANDROID_1__;__ANDROID_2__;__ANDROID_3__;__ANDROID_4__;__ANDROID_5__;__ANDROID_6__;__ANDROID_7__;__ANDROID_8__;__ANDROID_9__;__ANDROID_10__;__ANDROID_11__;__ANDROID_12__;__ANDROID_13__;__ANDROID_14__;__ANDROID_15__;__ANDROID_16__;__ANDROID_17__;__ANDROID_18__;__ANDROID_19__;__ANDROID_20__;__ANDROID_21__;__ANDROID_22__;__ANDROID_23__;__ANDROID_24__;__ANDROID_25__;__ANDROID_26__;__ANDROID_27__;__ANDROID_28__;__ANDROID_29__;__ANDROID_30__;__ANDROID_31__;__ANDROID_32__;__ANDROID_33__;__ANDROID_34__;__ANDROID_35__;__ANDROID_36__
 /highentropyva+
 /nullable:enable
 /features:"InterceptorsNamespaces=;Microsoft.Extensions.Validation.Generated"
@@ -66,6 +66,9 @@ MainViewModel.cs
 Models/AppConfig.cs
 obj/Debug/net10.0-android/
  .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+ Protos/
+  Weather.cs
+  WeatherGrpc.cs
  uno.hot-reload.info/
   HotReloadInfo.Attribute.g.cs
   HotReloadInfo.g.cs
@@ -76,6 +79,7 @@ obj/Debug/net10.0-android/
 Platforms/Android/
  Main.Android.cs
  MainActivity.Android.cs
+Services/WeatherService.cs
 
 [metadataReferences]
 <DOTNET>/packs/Microsoft.Android.Ref.36/36.1.2/ref/net10.0/
@@ -86,6 +90,11 @@ Platforms/Android/
 <NUGET>/
  commonservicelocator/2.0.5/lib/netcoreapp3.0/CommonServiceLocator.dll
  communitytoolkit.mvvm/8.4.0/lib/net8.0/CommunityToolkit.Mvvm.dll
+ google.protobuf/3.34.1/lib/net5.0/Google.Protobuf.dll
+ grpc.core.api/2.76.0/lib/netstandard2.1/Grpc.Core.Api.dll
+ grpc.net.client.web/2.76.0/lib/net10.0/Grpc.Net.Client.Web.dll
+ grpc.net.client/2.76.0/lib/net10.0/Grpc.Net.Client.dll
+ grpc.net.common/2.76.0/lib/net10.0/Grpc.Net.Common.dll
  harfbuzzsharp/8.3.1.1/lib/net8.0-android34.0/HarfBuzzSharp.dll
  microsoft.bcl.asyncinterfaces/8.0.0/lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll
  microsoft.extensions.configuration.abstractions/10.0.2/lib/net10.0/Microsoft.Extensions.Configuration.Abstractions.dll
@@ -537,6 +546,9 @@ Models/AppConfig.cs
 obj/Debug/net10.0-browserwasm/
  .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
  FakeGlobalUsings.g.cs
+ Protos/
+  Weather.cs
+  WeatherGrpc.cs
  uno.hot-reload.info/
   HotReloadInfo.Attribute.g.cs
   HotReloadInfo.g.cs
@@ -544,11 +556,17 @@ obj/Debug/net10.0-browserwasm/
  UnoGrpc.AssemblyInfo.cs
  UnoGrpc.GlobalUsings.g.cs
 Platforms/WebAssembly/Program.cs
+Services/WeatherService.cs
 
 [metadataReferences]
 <NUGET>/
  commonservicelocator/2.0.5/lib/netcoreapp3.0/CommonServiceLocator.dll
  communitytoolkit.mvvm/8.4.0/lib/net8.0/CommunityToolkit.Mvvm.dll
+ google.protobuf/3.34.1/lib/net5.0/Google.Protobuf.dll
+ grpc.core.api/2.76.0/lib/netstandard2.1/Grpc.Core.Api.dll
+ grpc.net.client.web/2.76.0/lib/net10.0/Grpc.Net.Client.Web.dll
+ grpc.net.client/2.76.0/lib/net10.0/Grpc.Net.Client.dll
+ grpc.net.common/2.76.0/lib/net10.0/Grpc.Net.Common.dll
  harfbuzzsharp/8.3.1.1/lib/net8.0/HarfBuzzSharp.dll
  microsoft.bcl.asyncinterfaces/8.0.0/lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll
  microsoft.dotnet.hotreload.webassembly.browser/10.0.201/lib/net10.0/Microsoft.DotNet.HotReload.WebAssembly.Browser.dll
@@ -961,6 +979,9 @@ MainViewModel.cs
 Models/AppConfig.cs
 obj/Debug/net10.0-desktop/
  .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+ Protos/
+  Weather.cs
+  WeatherGrpc.cs
  uno.hot-reload.info/
   HotReloadInfo.Attribute.g.cs
   HotReloadInfo.g.cs
@@ -968,6 +989,7 @@ obj/Debug/net10.0-desktop/
  UnoGrpc.AssemblyInfo.cs
  UnoGrpc.GlobalUsings.g.cs
 Platforms/Desktop/Program.cs
+Services/WeatherService.cs
 
 [metadataReferences]
 <DOTNET>/packs/Microsoft.NETCore.App.Ref/10.0.5/ref/net10.0/
@@ -1141,6 +1163,11 @@ Platforms/Desktop/Program.cs
 <NUGET>/
  commonservicelocator/2.0.5/lib/netcoreapp3.0/CommonServiceLocator.dll
  communitytoolkit.mvvm/8.4.0/lib/net8.0/CommunityToolkit.Mvvm.dll
+ google.protobuf/3.34.1/lib/net5.0/Google.Protobuf.dll
+ grpc.core.api/2.76.0/lib/netstandard2.1/Grpc.Core.Api.dll
+ grpc.net.client.web/2.76.0/lib/net10.0/Grpc.Net.Client.Web.dll
+ grpc.net.client/2.76.0/lib/net10.0/Grpc.Net.Client.dll
+ grpc.net.common/2.76.0/lib/net10.0/Grpc.Net.Common.dll
  harfbuzzsharp/8.3.1.1/lib/net8.0/HarfBuzzSharp.dll
  libvlcsharp/3.7.0/lib/net6.0/LibVLCSharp.dll
  microsoft.bcl.asyncinterfaces/8.0.0/lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll
@@ -1354,6 +1381,9 @@ MainViewModel.cs
 Models/AppConfig.cs
 obj/Debug/net10.0-ios/iossimulator-x64/
  .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+ Protos/
+  Weather.cs
+  WeatherGrpc.cs
  uno.hot-reload.info/
   HotReloadInfo.Attribute.g.cs
   HotReloadInfo.g.cs
@@ -1362,12 +1392,18 @@ obj/Debug/net10.0-ios/iossimulator-x64/
  UnoGrpc.GlobalUsings.g.cs
  UnoGrpc.nfloat.g.cs
 Platforms/iOS/Main.iOS.cs
+Services/WeatherService.cs
 
 [metadataReferences]
 <DOTNET>/packs/Microsoft.iOS.Ref.net10.0_26.1/26.1.10502/ref/net10.0/Microsoft.iOS.dll
 <NUGET>/
  commonservicelocator/2.0.5/lib/netcoreapp3.0/CommonServiceLocator.dll
  communitytoolkit.mvvm/8.4.0/lib/net8.0/CommunityToolkit.Mvvm.dll
+ google.protobuf/3.34.1/lib/net5.0/Google.Protobuf.dll
+ grpc.core.api/2.76.0/lib/netstandard2.1/Grpc.Core.Api.dll
+ grpc.net.client.web/2.76.0/lib/net10.0/Grpc.Net.Client.Web.dll
+ grpc.net.client/2.76.0/lib/net10.0/Grpc.Net.Client.dll
+ grpc.net.common/2.76.0/lib/net10.0/Grpc.Net.Common.dll
  harfbuzzsharp/8.3.1.1/lib/net8.0-ios17.0/HarfBuzzSharp.dll
  microsoft.bcl.asyncinterfaces/8.0.0/lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll
  microsoft.extensions.configuration.abstractions/10.0.2/lib/net10.0/Microsoft.Extensions.Configuration.Abstractions.dll
