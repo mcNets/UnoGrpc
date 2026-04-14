@@ -1,4 +1,4 @@
-﻿<Page xmlns:hd="using:Uno.UI.HotDesign"
+<Page xmlns:hd="using:Uno.UI.HotDesign"
       xmlns:markup="using:Uno.UI.Markup"
       x:Name="Root"
       x:Class="UnoGrpc.MainPage"
@@ -28,7 +28,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Border Background="{ThemeResource BrushPrimary}"
-                Height="240"
+                Height="140"
                 Grid.Row="0">
             <Grid>
                 <Image Opacity="0.3"
@@ -45,10 +45,11 @@
                                Text="Weather Service" />
                     <TextBlock HorizontalAlignment="Center"
                                Opacity="0.9"
-                               Foreground="{ThemeResource BrushOnPrimary}"
+                               Foreground="{StaticResource BrushOnPrimary}"
                                FontSize="16"
                                x:Uid="WeatherServiceSubtitle"
                                Text="Get current weather conditions" />
+                  <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource BrushOnPrimary}" FontSize="10" Text="This apps uses https://goweather.xyz/weather/ service." />
                 </StackPanel>
             </Grid>
         </Border>
@@ -76,7 +77,7 @@
                                  BorderBrush="{ThemeResource BrushOutline}"
                                  Padding="16,12"
                                  CornerRadius="8"
-                                 PlaceholderText="Enter city name"
+                                 PlaceholderText="Enter city name. Ex: NewYork"
                                  x:Name="CityInput" />
                         <Button Command="{x:Bind ViewModel.GetWeatherCommand, Mode=OneWay}"
                                 FontSize="16"

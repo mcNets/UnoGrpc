@@ -36,7 +36,7 @@ public class WeatherService(ILogger<WeatherService> logger) : Weather.WeatherBas
                 Success = true
             };
 
-            logger.LogInformation("Success: Temperature={temp}", reply.Temperature);
+            logger.LogInformation("Success: Temperature={temp} Wind={wind} Description={desc}", reply.Temperature, reply.Wind, reply.Description);
 
             return reply;
         }
