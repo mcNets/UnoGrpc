@@ -1,5 +1,9 @@
 # UnoGrpc
 
+This project should solve this issue:
+
+https://github.com/unoplatform/uno/issues/1594
+
 Project to show how to use gRPC in an Uno Platform application.
 
 Tested on:
