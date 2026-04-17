@@ -36,7 +36,7 @@ public class WeatherService
 #endif
     }
 
-    public async Task<WeatherReply> GetWeatherAsync(string city)
+    public async Task<WeatherReply> GetWeatherAsync(string city, bool mockData)
     {
         try
         {
@@ -44,7 +44,7 @@ public class WeatherService
 
             var client = new Weather.WeatherClient(channel);
             var weatherReply = await client.GetWeatherAsync(
-                new WeatherRequest { City = (city ?? string.Empty).Replace(" ", "") });
+                new WeatherRequest { City = (city ?? string.Empty).Replace(" ", ""), Mock = mockData });
             return weatherReply;
         }
         catch (Exception ex)

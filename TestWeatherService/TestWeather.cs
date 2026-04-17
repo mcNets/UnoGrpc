@@ -77,12 +77,21 @@ public class WeatherServiceTests
         _serverProcess?.Dispose();
     }
 
+    private static int GetFreePort()
+    {
+        var listener = new TcpListener(System.Net.IPAddress.Loopback, 0);
+        listener.Start();
+        int port = ((System.Net.IPEndPoint)listener.LocalEndpoint).Port;
+        listener.Stop();
+        return port;
+    }
+
     [Test]
     public async Task GetWeather_WhenCityExistsSuccess()
     {
         var weatherClient = new Weather.WeatherClient(_channel);
         var weatherReply = await weatherClient.GetWeatherAsync(
-            new WeatherRequest { City = "Barcelona" });
+            new WeatherRequest { City = "Barcelona", Mock = false });
 
         Assert.That(weatherReply.Success, Is.True);
     }
@@ -92,17 +101,18 @@ public class WeatherServiceTests
     {
         var weatherClient = new Weather.WeatherClient(_channel);
         var weatherReply = await weatherClient.GetWeatherAsync(
-            new WeatherRequest { City = "NonExistentCity" });
+            new WeatherRequest { City = "NonExistentCity", Mock = false });
 
         Assert.That(weatherReply.Success, Is.False);
     }
 
-    private static int GetFreePort()
+    [Test]
+    public async Task GetWeather_WhenMockDataSuccess()
     {
-        var listener = new TcpListener(System.Net.IPAddress.Loopback, 0);
-        listener.Start();
-        int port = ((System.Net.IPEndPoint)listener.LocalEndpoint).Port;
-        listener.Stop();
-        return port;
+        var weatherClient = new Weather.WeatherClient(_channel);
+        var weatherReply = await weatherClient.GetWeatherAsync(
+            new WeatherRequest { City = "Barcelona", Mock = true });
+
+        Assert.That(weatherReply.Success, Is.True);
     }
 }

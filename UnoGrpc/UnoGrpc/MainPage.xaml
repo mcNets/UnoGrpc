@@ -1,4 +1,4 @@
-<Page xmlns:hd="using:Uno.UI.HotDesign"
+﻿<Page xmlns:hd="using:Uno.UI.HotDesign"
       xmlns:markup="using:Uno.UI.Markup"
       x:Name="Root"
       x:Class="UnoGrpc.MainPage"
@@ -7,6 +7,7 @@
       xmlns:local="using:UnoGrpc"
       xmlns:utu="using:Uno.Toolkit.UI"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
     <Grid Background="{ThemeResource BrushBackground}">
         <Grid.DataContext>
             <markup:FromJson>
@@ -23,13 +24,16 @@
                 </markup:FromJson.Source>
             </markup:FromJson>
         </Grid.DataContext>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
         <Border Background="{ThemeResource BrushPrimary}"
                 Height="140"
                 Grid.Row="0">
+            
             <Grid>
                 <Image Opacity="0.3"
                        Stretch="UniformToFill"
@@ -49,14 +53,20 @@
                                FontSize="16"
                                x:Uid="WeatherServiceSubtitle"
                                Text="Get current weather conditions" />
-                  <TextBlock HorizontalAlignment="Center" Foreground="{StaticResource BrushOnPrimary}" FontSize="10" Text="This apps uses https://goweather.xyz/weather/ service." />
+                    <TextBlock HorizontalAlignment="Center"
+                               Foreground="{StaticResource BrushOnPrimary}"
+                               FontSize="10"
+                               Text="This apps uses https://goweather.xyz/weather/ service." />
                 </StackPanel>
             </Grid>
         </Border>
+        
         <ScrollViewer Grid.Row="1">
+            
             <StackPanel Spacing="24"
                         Margin="24,32,24,32"
                         MaxWidth="600">
+                
                 <Border Translation="0,0,16"
                         Padding="24"
                         CornerRadius="8"
@@ -66,12 +76,19 @@
                     <Border.Shadow>
                         <ThemeShadow />
                     </Border.Shadow>
+                    
                     <StackPanel Spacing="16">
                         <TextBlock Foreground="{ThemeResource BrushOnSurface}"
                                    FontWeight="SemiBold"
                                    FontSize="20"
                                    x:Uid="SearchLocationLabel"
                                    Text="Search Location" />
+                        
+                        <ToggleSwitch OnContent="Mock data"
+                                      OffContent="Use goweather.xyz service"
+                                      VerticalAlignment="Center"
+                                      IsOn="{x:Bind ViewModel.MockData, Mode=TwoWay}" />
+                        
                         <TextBox Text="{x:Bind ViewModel.City, Mode=TwoWay}"
                                  Background="{ThemeResource BrushSurfaceVariant}"
                                  BorderBrush="{ThemeResource BrushOutline}"
@@ -79,6 +96,7 @@
                                  CornerRadius="8"
                                  PlaceholderText="Enter city name. Ex: NewYork"
                                  x:Name="CityInput" />
+                        
                         <Button Command="{x:Bind ViewModel.GetWeatherCommand, Mode=OneWay}"
                                 FontSize="16"
                                 FontWeight="SemiBold"
@@ -89,11 +107,18 @@
                                 HorizontalAlignment="Stretch"
                                 x:Uid="GetWeatherButton"
                                 Content="Get Weather" />
+                        
+                      <InfoBar IsOpen="{x:Bind ViewModel.IsEmpty, Mode=OneWay}"
+                               IsClosable="False"
+                               Message="Please, enter a city."
+                               Severity="Error" />
+                        
                     </StackPanel>
+                    
                 </Border>
 
                 <Grid>
-                    
+
                     <Border Translation="0,0,16"
                             Visibility="{Binding HasWeatherData}"
                             Padding="24"
@@ -166,7 +191,7 @@
                             </StackPanel>
                         </StackPanel>
                     </Border>
-                    
+
                     <ProgressRing IsActive="True"
                                   Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}"
                                   Width="80"

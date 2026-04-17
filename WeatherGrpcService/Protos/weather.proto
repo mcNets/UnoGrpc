@@ -10,6 +10,7 @@ service Weather {
 
 message WeatherRequest {
   string city = 1;
+  bool mock = 2;
 }
 
 message WeatherReply {

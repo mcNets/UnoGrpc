@@ -25,21 +25,37 @@ public partial class MainViewModel(WeatherService weatherService) : ObservableOb
     [ObservableProperty]
     public partial bool IsLoading { get; set; } = false;
 
+    [ObservableProperty]
+    public partial bool MockData { get; set; } = false;
+
+    [ObservableProperty]
+    public partial bool IsEmpty { get; set; } = false;
+
     public string WeatherIn => $"Weather in {City}";
 
     [RelayCommand]
     private async Task GetWeather()
     {
-        (App.Current as App)?.Dispatcher?.TryEnqueue(() => IsLoading = true);
+        if (string.IsNullOrEmpty(City))
+        {
+            (App.Current as App)?.Dispatcher?.TryEnqueue(() => IsEmpty = true);
+            return;
+        }
 
-        IsLoading = true;
+        (App.Current as App)?.Dispatcher?.TryEnqueue(() =>
+        {
+            IsLoading = true;
+            IsEmpty = false;
+        });
 
-        var weatherReply = await _weatherService.GetWeatherAsync(City);
+        var weatherReply = await _weatherService.GetWeatherAsync(City, MockData);
 
-        Temperature = weatherReply.Temperature;
-        Wind = weatherReply.Wind;
-        Description = weatherReply.Description;
-
-        (App.Current as App)?.Dispatcher?.TryEnqueue(() => IsLoading = false);
+        (App.Current as App)?.Dispatcher?.TryEnqueue(() =>
+        {
+            Temperature = weatherReply.Temperature;
+            Wind = weatherReply.Wind;
+            Description = weatherReply.Description;
+            IsLoading = false;
+        });
     }
 }
